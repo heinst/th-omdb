@@ -11,6 +11,7 @@ import {
   IonModal,
   IonTitle,
   IonToolbar,
+  useIonLoading,
 } from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -34,12 +35,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [searchText, setSearchText] = useState<string>();
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [present, dismiss] = useIonLoading();
 
   const api = create({
     baseURL: "http://www.omdbapi.com",
   });
 
   const close = (movie: Movie | undefined) => {
+    dismiss();
     onClose(movie);
     setSearchText("");
     setIsOpen(false);
@@ -47,6 +50,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const showError = (error: string) => {
     setErrorMessage(error);
+    dismiss();
     setShowErrorAlert(true);
   };
 
@@ -88,6 +92,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             expand="block"
             color="primary"
             onClick={() => {
+              present();
               if (searchText?.startsWith("tt")) {
                 api
                   .get<Movie>(`/?apikey=1296a6e6&i=${searchText}`)

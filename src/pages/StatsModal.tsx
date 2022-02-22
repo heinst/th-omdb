@@ -107,7 +107,7 @@ export const StatsModal: React.FC<SearchModalProps> = ({
           )}`}</IonLabel>
         </IonItem>
         <IonItem>
-          <IonLabel style={{ fontSize: "16px" }}>
+          <IonLabel style={{ fontSize: "16px" }} text-wrap>
             Box Office Standard Deviation
           </IonLabel>
           <IonLabel style={{ fontSize: "16px" }}>{`${formatter.format(
