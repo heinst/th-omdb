@@ -54,11 +54,20 @@ export const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
           key={movie.imdbID}
         >
           <IonCard>
-            <img
-              srcSet={`${movie.Poster} 2x`}
-              alt="(Movie Poster)"
-              style={{ paddingTop: 10, paddingLeft: 10 }}
-            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                srcSet={`${movie.Poster} 2x`}
+                alt="(Movie Poster)"
+                style={{ paddingTop: 10, paddingLeft: 10 }}
+              />
+            </div>
+
             <IonCardHeader>
               <IonCardTitle>{movie.Title}</IonCardTitle>
               <IonCardSubtitle>{movie.Actors}</IonCardSubtitle>
